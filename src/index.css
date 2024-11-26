@@ -11,6 +11,36 @@ code {
     monospace;
 }
 
-/* ERIAN  */
+.searchForm {
+  border: 5px solid black;
+  color: black;
+  text-align: center;
+}
 
-/* Both CAROUSEL */
+.content {
+  padding: 20px;
+  background-color: beige;
+}
+
+.products {
+  border: 5px solid black;
+  color: black;
+  text-align: center;
+}
+
+.footer {
+  background-color: gray;
+  border: 5px solid black;
+  color: black;
+  text-align: center;
+  display: flex;
+}
+
+/* ERIAN  */
+.navbar {
+  background-color: gray;
+  color: white;
+  border: 5px solid black;
+  text-align: center;
+  display: flex;
+}

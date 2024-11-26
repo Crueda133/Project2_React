@@ -1,9 +1,8 @@
 import React from "react";
 
-function HomePage() {
+function Content() {
   return (
     <div>
-      {/* Podemos agregar el logo en la parte izquierda */}
       <header>
         <h1>Mi Casa es Tu Casa</h1>
         <p>
@@ -15,4 +14,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Content;
