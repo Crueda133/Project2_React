@@ -1,0 +1,26 @@
+/* ProductDetail.css */
+.product-detail {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.product-detail h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+.product-detail img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.product-detail p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}

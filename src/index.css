@@ -2,7 +2,7 @@
 
 /* HomePage */
 body {
-  background-color: beige;
+  background-color: rgba(245, 245, 220, 0);
   text-decoration: black;
 }
 
@@ -11,15 +11,9 @@ code {
     monospace;
 }
 
-.searchForm {
-  border: 5px solid black;
-  color: black;
-  text-align: center;
-}
-
 .content {
   padding: 20px;
-  background-color: beige;
+  background-color: rgba(245, 245, 220, 0);
 }
 
 .products {
@@ -27,5 +21,3 @@ code {
   color: black;
   text-align: center;
 }
-
-/* ERIAN  */

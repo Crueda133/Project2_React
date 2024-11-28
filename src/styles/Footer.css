@@ -1,7 +1,50 @@
-.footer {
-  background-color: gray;
-  border: 5px solid black;
-  color: black;
-  text-align: center;
-  display: flex;
+/* Footer */
+footer {
+  background-color: black;
+  color: gray; /* texto */
+  text-align: center; /* Centra el texto en el footer */
+  padding: 20px 0; /* Espaciado arriba y abajo */
+  width: 100%; /* El footer ocupa todo el ancho de la pantalla */
+  position: relative;
+  font-weight: bold;
+}
+
+/* Estilo para el contenedor de los links (ul) */
+footer ul {
+  list-style-type: none; /* Quita los puntos de la lista */
+  padding: 0;
+  margin: 0;
+  display: flex; /* Usa flexbox para alinear los items en fila */
+  justify-content: center; /* Centra los items horizontalmente */
+  gap: 30px; /* Espacio entre los links */
+}
+
+/* Estilo para cada link dentro del footer (li) */
+footer li {
+  display: inline-block; /* Asegura que los items estén en una sola fila */
+}
+
+/* Estilo para los enlaces */
+footer a {
+  color: gray;
+  text-decoration: none; /* Quita el subrayado de los links */
+  font-size: 1rem;
+  transition: color 0.3s, transform 0.3s; /* Transiciones para el color y el tamaño  */
+}
+
+/* Estilo para los links cuando pasas el mouse por encima y que se vea en donde hacen click */
+footer a:hover {
+  color: white;
+  text-decoration: underline;
+  transform: scale(
+    1.1
+  ); /* Hace que el link se agrande un poquito al hacer hover */
+}
+
+/* Estilo para el texto pequeño en el footer  */
+footer .footer-text {
+  font-size: 0.8rem;
+  margin-top: 15px;
+  color: gray;
+  font-weight: normal; /* Pone el texto normal, sin negrita */
 }
