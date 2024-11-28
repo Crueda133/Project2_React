@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
 
 // Components;
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SearchForm from "./components/SearchForm";
 import Products from "./components/Products";
-
 // Pages
 import Content from "./pages/Content";
 import AboutUs from "./pages/AboutUs";
@@ -27,7 +27,6 @@ function App() {
       <div className="navbar">
         <Navbar />
       </div>
-
       {/* Main content area with SearchForm and Products */}
       <div className="content">
         <Content />
@@ -42,19 +41,16 @@ function App() {
               </>
             }
           />
-
           {/* Navbar Routes */}
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/account" element={<Account />} />
           {/* podemos decir que esta parte solo sera visible si tienes Admin rights  */}
           <Route path="/add-or-edit-product" element={<AddOrEditProduct />} />
-
           {/* Esto va en el centro  - Products and SearchForm*/}
           <Route path="/products" element={<Products />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/product/:id" element={<ProductDetail />} />
-
           {/* //esto va en el footer  */}
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
@@ -65,7 +61,6 @@ function App() {
           <Route path="/job-offers" element={<JobOffers />} />
         </Routes>
       </div>
-
       {/* Footer at the bottom */}
       <div className="footer">
         <Footer />
@@ -73,5 +68,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

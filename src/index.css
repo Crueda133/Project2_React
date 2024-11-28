@@ -28,19 +28,4 @@ code {
   text-align: center;
 }
 
-.footer {
-  background-color: gray;
-  border: 5px solid black;
-  color: black;
-  text-align: center;
-  display: flex;
-}
-
 /* ERIAN  */
-.navbar {
-  background-color: gray;
-  color: white;
-  border: 5px solid black;
-  text-align: center;
-  display: flex;
-}

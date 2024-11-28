@@ -1,0 +1,7 @@
+.footer {
+  background-color: gray;
+  border: 5px solid black;
+  color: black;
+  text-align: center;
+  display: flex;
+}
