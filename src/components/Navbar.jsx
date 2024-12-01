@@ -1,14 +1,10 @@
+// Navbar.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import Carousel from "./Carousel";
 
-function Navbar({ carouselImages }) {
+function Navbar() {
   return (
-    <div style={{ position: "relative" }}>
-      {/* Carousel como fondo */}
-      <div style={{ position: "absolute", zIndex: "-1", width: "100%" }}>
-        <Carousel images={carouselImages} />
-      </div>
+    <div>
       {/* Navbar */}
       <nav
         className="navbar navbar-expand-lg navbar-dark bg-dark"

@@ -1,5 +1,7 @@
+// Products.jsx
 import React from "react";
-import "../styles/Products.css"; // Corrected path
+import { Link } from "react-router-dom";
+import "../styles/Products.css";
 
 function Products({ products }) {
   return (
@@ -16,9 +18,9 @@ function Products({ products }) {
             <p>{product.city_name}</p>
             <p>{product.price}</p>
             <p>{product.catch_line}</p>
-            <a href={product.link} className="view-offer-link">
+            <Link to={`/product/${product.id}`} className="view-offer-link">
               See the offer
-            </a>
+            </Link>
           </div>
         </div>
       ))}

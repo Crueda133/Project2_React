@@ -1,0 +1,94 @@
+/* Dropdown List - General Styles */
+.search-form .form-group {
+  position: relative; /* To position the dropdowns correctly under input fields */
+}
+
+/* Generic Dropdown List */
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px; /* Limit the height of the dropdown */
+  overflow-y: auto; /* Make the dropdown scrollable if items overflow */
+  background-color: #f9f9f9; /* Light background */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+  z-index: 1000; /* Ensure dropdown is above other elements */
+  padding: 0;
+  margin: 0;
+}
+
+/* Dropdown Item Styles */
+.dropdown-item {
+  padding: 8px 12px; /* Adequate padding */
+  cursor: pointer; /* Show pointer cursor on hover */
+  border-radius: 4px; /* Slight rounded corners for each item */
+  transition: background-color 0.2s; /* Smooth hover transition */
+  background-color: #fff; /* White background for list items */
+  margin-bottom: 5px; /* Space between items */
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Light hover effect */
+}
+
+/* Custom Styles for Each Dropdown Type */
+
+/* Destination List */
+.destination-item {
+  background-color: #ffecb3;
+}
+
+/* Department List */
+.department-item {
+  background-color: #c8e6c9;
+}
+
+/* Service List */
+.service-item {
+  background-color: #bbdefb;
+}
+
+/* Input Field Styling */
+input {
+  padding: 8px 12px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff; /* Highlight border color when focused */
+}
+
+/* Select Input */
+select {
+  padding: 8px 12px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Submit Button */
+button.submit-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button.submit-btn:hover {
+  background-color: #0056b3;
+}

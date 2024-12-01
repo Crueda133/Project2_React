@@ -1,0 +1,21 @@
+.payment-confirmed {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.payment-confirmed h1 {
+  color: #4caf50;
+}
+
+.payment-confirmed ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.payment-confirmed ul li {
+  font-size: 18px;
+  margin: 10px 0;
+}

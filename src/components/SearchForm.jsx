@@ -1,31 +1,55 @@
 import React, { useState } from "react";
 import "../styles/Form.css";
+import SearchFormLists from "./SearchFormLists"; // Import the reusable component
 
-function SearchForm({ onFilter, departments = [], cities = [] }) {
+function SearchForm({
+  onFilter,
+  services = [],
+  destinations = [],
+  departments = [],
+}) {
   const [filters, setFilters] = useState({
     country: "",
     price: "",
     department: "",
-    city_name: "",
+    services: "",
   });
 
-  // Handle input change
+  // Estados para mostrar u ocultar los dropdowns
+  const [showDestinations, setShowDestinations] = useState(false);
+  const [showDepartments, setShowDepartments] = useState(false);
+  const [showServices, setShowServices] = useState(false);
+
+  // Actualizar los filtros al escribir en los campos de entrada
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFilters({
-      ...filters,
-      [name]: value,
-    });
+    const newFilters = { ...filters, [name]: value };
+    setFilters(newFilters);
+    onFilter(newFilters);
   };
 
-  // Handle form submission
+  // Manejar selección de un ítem en los dropdowns
+  const handleItemClick = (item, type) => {
+    console.log(`Selected ${type}:`, item);
+    const newFilters = { ...filters, [type]: item }; // Update filters first
+    setFilters(newFilters);
+    console.log("Filters after update:", newFilters);
+    onFilter(newFilters); // Pass updated filters to the parent
+    setTimeout(() => {
+      if (type === "country") setShowDestinations(false);
+      if (type === "department") setShowDepartments(false);
+      if (type === "services") setShowServices(false);
+    }, 100);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onFilter(filters); // Pass filters to parent component
+    onFilter(filters);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="search-form">
+    <form className="search-form">
+      {/* Destinos */}
       <div className="form-group">
         <label htmlFor="country">Destination</label>
         <input
@@ -35,53 +59,66 @@ function SearchForm({ onFilter, departments = [], cities = [] }) {
           value={filters.country}
           onChange={handleChange}
           placeholder="Enter destination"
+          onFocus={() => setShowDestinations(true)}
+          onBlur={() => setTimeout(() => setShowDestinations(false), 100)}
         />
+        {showDestinations && (
+          <SearchFormLists
+            data={destinations}
+            onItemClick={(item) => handleItemClick(item, "country")}
+            title="Popular Destinations"
+            listType="destination"
+          />
+        )}
       </div>
 
+      {/* Departamento */}
       <div className="form-group">
-        <label htmlFor="department">Department</label>
-        <select
+        <label htmlFor="department">Department / Region</label>
+        <input
+          type="text"
           id="department"
           name="department"
           value={filters.department}
           onChange={handleChange}
-        >
-          <option value="">Select Department</option>
-          {/* Ensure departments is an array */}
-          {departments && departments.length > 0 ? (
-            departments.map((department, index) => (
-              <option key={index} value={department}>
-                {department}
-              </option>
-            ))
-          ) : (
-            <option value="">No departments available</option>
-          )}
-        </select>
+          placeholder="Enter department"
+          onFocus={() => setShowDepartments(true)}
+          onBlur={() => setTimeout(() => setShowDepartments(false), 100)}
+        />
+        {showDepartments && (
+          <SearchFormLists
+            data={departments}
+            onItemClick={(item) => handleItemClick(item, "department")}
+            title="Available Departments"
+            listType="department"
+          />
+        )}
       </div>
 
+      {/* Servicios */}
       <div className="form-group">
-        <label htmlFor="city_name">City Name</label>
-        <select
-          id="city_name"
-          name="city_name"
-          value={filters.city_name}
+        <label htmlFor="services">Services</label>
+        <input
+          type="text"
+          id="services"
+          name="services"
+          value={filters.services}
           onChange={handleChange}
-        >
-          <option value="">Select City</option>
-          {/* Ensure cities is an array */}
-          {cities && cities.length > 0 ? (
-            cities.map((city, index) => (
-              <option key={index} value={city}>
-                {city}
-              </option>
-            ))
-          ) : (
-            <option value="">No cities available</option>
-          )}
-        </select>
+          placeholder="Enter services"
+          onFocus={() => setShowServices(true)}
+          onBlur={() => setTimeout(() => setShowServices(false), 100)}
+        />
+        {showServices && (
+          <SearchFormLists
+            data={services}
+            onItemClick={(item) => handleItemClick(item, "services")}
+            title="Available Services"
+            listType="service"
+          />
+        )}
       </div>
 
+      {/* Rango de precios */}
       <div className="form-group">
         <label htmlFor="price">Price</label>
         <select
@@ -91,10 +128,10 @@ function SearchForm({ onFilter, departments = [], cities = [] }) {
           onChange={handleChange}
         >
           <option value="">Select Price Range</option>
-          <option value="under_200">Less than 200€</option>
-          <option value="200_to_500">200€ - 500€</option>
-          <option value="500_to_1000">500€ - 1000€</option>
-          <option value="over_1000">More than 1000€</option>
+          <option value="under_100">Less than 100€</option>
+          <option value="100_to_150">100€ - 150€</option>
+          <option value="150_to_250">150€ - 250€</option>
+          <option value="over_250">More than 250€</option>
         </select>
       </div>
 
