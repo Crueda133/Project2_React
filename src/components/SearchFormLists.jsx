@@ -6,16 +6,20 @@ function SearchFormLists({ data, onItemClick, title, listType }) {
     <div className="dropdown-list">
       <h3>{title}</h3>
       <ul>
-        {data.map((item, index) => (
-          <li key={index}>
-            <button
-              onClick={() => onItemClick(item)}
-              className={`dropdown-item ${listType}-item`}
-            >
-              {item}
-            </button>
-          </li>
-        ))}
+        {data.length === 0 ? (
+          <li className="no-results">No items available</li>
+        ) : (
+          data.map((item, index) => (
+            <li key={index}>
+              <button
+                onClick={() => onItemClick(item, listType)}
+                className={`dropdown-item ${listType}-item`}
+              >
+                {item}
+              </button>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

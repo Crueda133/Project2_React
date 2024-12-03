@@ -41,3 +41,27 @@
 .view-offer-link:hover {
   text-decoration: underline;
 }
+
+/* Message if they do not find a product with the filters  */
+.sorry-message {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2d87f0; /* Soft blue color */
+  background-color: #f8f9fa; /* Light grey background for contrast */
+  padding: 20px;
+  border-radius: 8px;
+  margin: 30px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sorry-message span {
+  font-size: 1.4rem;
+  color: #1a73e8; /* Slightly darker blue for emphasis */
+}
+
+.sorry-message i {
+  font-size: 1.5rem;
+  margin-right: 8px;
+  color: #28a745; /* Green color for the emoji */
+}
