@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SearchForm from "./components/SearchForm";
 import Products from "./components/Products";
-import Carousel from "./components/Carousel"; // Make sure the Carousel import stays here
+import Carousel from "./components/Carousel";
 import ProductDetail from "./pages/ProductDetail";
 import PaymentPage from "./pages/PaymentPage";
 import PaymentConfirmed from "./pages/PaymentConfirmed";
