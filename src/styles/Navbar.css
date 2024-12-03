@@ -1,11 +1,17 @@
 .navbar {
-  background-color: black;
+  background-color: rgb(72, 136, 205);
   color: gray;
   text-align: center;
   padding: 20px 0;
   width: 100%;
   position: relative;
   font-weight: bold;
+}
+
+.custom-navbar {
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
 
 .navbar-nav {
@@ -44,4 +50,9 @@
   color: white;
   text-decoration: underline;
   transform: scale(1.1);
+}
+
+.navbarNav {
+  display: flex;
+  align-items: center;
 }
