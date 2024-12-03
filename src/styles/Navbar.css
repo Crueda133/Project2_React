@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
   background-color: rgb(72, 136, 205);
   color: gray;
   text-align: center;
@@ -12,6 +12,7 @@
   display: flex;
   text-align: center;
   align-items: center;
+  flex-direction: row;
 }
 
 .navbar-nav {
@@ -55,4 +56,38 @@
 .navbarNav {
   display: flex;
   align-items: center;
+  flex-direction: row;
+} */
+
+.custom-navbar {
+  width: 100%; /* Ensure the navbar takes full width of the screen */
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between; /* Space between brand and navbar items */
+  align-items: center; /* Center the items vertically */
+}
+
+#navbarNav .navbar-nav {
+  display: flex; /* Use flexbox to arrange the list items */
+  justify-content: space-evenly; /* Distribute the items evenly across the width */
+  flex-direction: row;
+  width: 100%; /* Ensure the list items take up the full width */
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block; /* Ensures the links are block level and fill the space */
+}
+
+.nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Add a subtle hover effect */
 }

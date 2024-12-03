@@ -7,7 +7,6 @@
 /* Style for the carousel inner container */
 .carousel-inner {
   display: flex;
-  justify-content: center;
   align-items: center;
   height: 400px; /* Set the height as needed */
   overflow: hidden;
