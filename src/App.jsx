@@ -12,6 +12,7 @@ import Carousel from "./components/Carousel";
 import ProductDetail from "./pages/ProductDetail";
 import PaymentPage from "./pages/PaymentPage";
 import PaymentConfirmed from "./pages/PaymentConfirmed";
+import AdminPanel from "./components/AdminPanel";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -19,6 +20,7 @@ function App() {
   const [departments, setDepartments] = useState([]);
   const [destinations, setDestinations] = useState([]);
   const [services, setServices] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   // Fetch data from the API
   const fetchData = async () => {
@@ -111,7 +113,7 @@ function App() {
     <Router>
       <div className="app-container">
         <div className="navbar">
-          <Navbar />
+          <Navbar isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
         </div>
 
         <div className="content">
@@ -129,11 +131,12 @@ function App() {
                     departments={departments}
                     services={services}
                   />
-                  <Products products={filteredProducts} />{" "}
+                  <Products products={filteredProducts} isAdmin={isAdmin} />{" "}
                   {/* Display filtered products */}
                 </>
               }
             />
+            <Route path="admin" element={<AdminPanel />} />
 
             {/* Product Detail Route */}
             <Route

@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ onAdminToggle, isAdmin, setIsAdmin }) {
   return (
     <div className="custom-navbar">
       {/* Navbar */}
@@ -43,6 +43,16 @@ function Navbar() {
                 <Link className="nav-link" to="/about-us">
                   About Us
                 </Link>
+              </li>
+              <li className="nav-item">
+                <button
+                  className={`nav-link admin-button ${isAdmin ? "active" : ""}`}
+                  onClick={() => {
+                    setIsAdmin(!isAdmin);
+                  }}
+                >
+                  {isAdmin ? "Exit Admin Mode" : "Admin"}
+                </button>
               </li>
             </ul>
           </div>

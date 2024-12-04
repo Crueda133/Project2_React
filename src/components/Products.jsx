@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Products.css";
 
-function Products({ products }) {
+function Products({ products, isAdmin }) {
   return (
     <div className="products-container">
       {products.map((product) => (
@@ -21,6 +21,8 @@ function Products({ products }) {
             <Link to={`/product/${product.id}`} className="view-offer-link">
               See the offer
             </Link>
+            {isAdmin ? <button>Edit</button> : null}
+            {isAdmin ? <button>Delete</button> : null}
           </div>
         </div>
       ))}
