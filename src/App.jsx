@@ -11,7 +11,9 @@ import Carousel from "./components/Carousel";
 import ProductDetail from "./pages/ProductDetail";
 import PaymentPage from "./pages/PaymentPage";
 import PaymentConfirmed from "./pages/PaymentConfirmed";
-import AdminPanel from "./components/AdminPanel";
+import AboutUs from "./pages/AboutUs";
+import Favorites from "./pages/Favorites";
+import Bookings from "./pages/Bookings";
 
 function App() {
   const [products, setProducts] = useState([]); // Stores all products
@@ -19,6 +21,7 @@ function App() {
   const [departments, setDepartments] = useState([]); // Stores unique departments
   const [destinations, setDestinations] = useState([]); // Stores unique destinations
   const [services, setServices] = useState([]); // Stores unique services
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // Fetch data from the API
   const fetchData = async () => {
@@ -145,7 +148,7 @@ function App() {
                   />
                   {/* Display filtered products or a message if none are found */}
                   {filteredProducts.length > 0 ? (
-                    <Products products={filteredProducts} />
+                    <Products products={filteredProducts} isAdmin={isAdmin} />
                   ) : (
                     <div className="sorry-message">
                       <i className="fas fa-sad-tear"></i>{" "}
@@ -159,7 +162,10 @@ function App() {
                 </>
               }
             />
-            <Route path="admin" element={<AdminPanel />} />
+
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/bookings" element={<Bookings />} />
 
             {/* Product Detail Route */}
             <Route
