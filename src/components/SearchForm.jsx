@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Form.css";
-import SearchFormLists from "./SearchFormLists"; // Import the reusable component
+import SearchFormLists from "./SearchFormLists";
 
 function SearchForm({
   onFilter,
@@ -24,31 +24,37 @@ function SearchForm({
   const handleChange = (e) => {
     const { name, value } = e.target;
     const newFilters = { ...filters, [name]: value };
-    setFilters(newFilters);
-    onFilter(newFilters);
+    setFilters(newFilters); // Update filters state
+    onFilter(newFilters); // Notify parent component about changes
   };
 
   // Manejar selección de un ítem en los dropdowns
   const handleItemClick = (item, type) => {
     console.log(`Selected ${type}:`, item);
-    const newFilters = { ...filters, [type]: item }; // Update filters first
-    setFilters(newFilters);
-    console.log("Filters after update:", newFilters);
-    onFilter(newFilters); // Pass updated filters to the parent
-    setTimeout(() => {
-      if (type === "country") setShowDestinations(false);
-      if (type === "department") setShowDepartments(false);
-      if (type === "services") setShowServices(false);
-    }, 100);
+    const newFilters = { ...filters, [type]: item }; // Update filters with selected item
+    setFilters(newFilters); // Reflect the selection in the input field
+    onFilter(newFilters); // Notify parent component
+
+    // Close the dropdown
+    if (type === "country") setShowDestinations(false);
+    if (type === "department") setShowDepartments(false);
+    if (type === "services") setShowServices(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onFilter(filters);
+  // Resetear los filtros
+  const handleReset = () => {
+    const defaultFilters = {
+      country: "",
+      price: "",
+      department: "",
+      services: "",
+    };
+    setFilters(defaultFilters); // Reset local filters
+    onFilter(defaultFilters); // Reset parent filter logic
   };
 
   return (
-    <form className="search-form">
+    <form className="search-form" onSubmit={(e) => e.preventDefault()}>
       {/* Destinos */}
       <div className="form-group">
         <label htmlFor="country">Destination</label>
@@ -60,7 +66,7 @@ function SearchForm({
           onChange={handleChange}
           placeholder="Enter destination"
           onFocus={() => setShowDestinations(true)}
-          onBlur={() => setTimeout(() => setShowDestinations(false), 100)}
+          onBlur={() => setTimeout(() => setShowDestinations(false), 200)}
         />
         {showDestinations && (
           <SearchFormLists
@@ -83,7 +89,7 @@ function SearchForm({
           onChange={handleChange}
           placeholder="Enter department"
           onFocus={() => setShowDepartments(true)}
-          onBlur={() => setTimeout(() => setShowDepartments(false), 100)}
+          onBlur={() => setTimeout(() => setShowDepartments(false), 200)}
         />
         {showDepartments && (
           <SearchFormLists
@@ -106,7 +112,7 @@ function SearchForm({
           onChange={handleChange}
           placeholder="Enter services"
           onFocus={() => setShowServices(true)}
-          onBlur={() => setTimeout(() => setShowServices(false), 100)}
+          onBlur={() => setTimeout(() => setShowServices(false), 200)}
         />
         {showServices && (
           <SearchFormLists
@@ -120,23 +126,24 @@ function SearchForm({
 
       {/* Rango de precios */}
       <div className="form-group">
-        <label htmlFor="price">Price</label>
+        <label>Price</label>
         <select
-          id="price"
           name="price"
           value={filters.price}
           onChange={handleChange}
+          className="price-filter"
         >
-          <option value="">Select Price Range</option>
-          <option value="under_100">Less than 100€</option>
-          <option value="100_to_150">100€ - 150€</option>
-          <option value="150_to_250">150€ - 250€</option>
-          <option value="over_250">More than 250€</option>
+          <option value="">Any</option>
+          <option value="under_100">Under 100</option>
+          <option value="100_to_150">100 to 150</option>
+          <option value="150_to_200">150 to 200</option>
+          <option value="over_200">Over 200</option>
         </select>
       </div>
 
-      <button type="submit" className="submit-btn">
-        Search
+      {/* Reset Button */}
+      <button type="button" onClick={handleReset} className="reset-btn">
+        Reset Filters
       </button>
     </form>
   );
