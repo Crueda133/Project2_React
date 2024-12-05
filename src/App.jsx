@@ -14,6 +14,9 @@ import PaymentConfirmed from "./pages/PaymentConfirmed";
 import AboutUs from "./pages/AboutUs";
 import Favorites from "./pages/Favorites";
 import Bookings from "./pages/Bookings";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import ContactUs from "./pages/ContactUs";
+import JobOffers from "./pages/JobOffers";
 
 function App() {
   const [products, setProducts] = useState([]); // Stores all products
@@ -166,6 +169,9 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/bookings" element={<Bookings />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/job-offers" element={<JobOffers />} />
 
             {/* Product Detail Route */}
             <Route

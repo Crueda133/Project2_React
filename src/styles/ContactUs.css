@@ -1,0 +1,70 @@
+/* Ensure the body and html cover full height */
+html,
+body {
+  height: 100%;
+  margin: 10px;
+  font-family: Arial, sans-serif;
+  background-color: #333333;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between; /* Space out the two offices */
+  align-items: flex-start; /* Align the offices at the top */
+  min-height: 100vh; /* Make the container fill the full viewport height */
+  padding: 30px;
+  background-color: #333333;
+  border-radius: 10px;
+  color: #f1f1f1;
+}
+
+.contact-info {
+  background-color: #444444;
+  padding: 20px;
+  margin: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 45%; /* Make each office take 45% of the screen width */
+  margin-top: 30px;
+}
+
+.contact-info h3 {
+  font-size: 2em;
+  color: #f39c12;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact-info p {
+  font-size: 1.1em;
+  color: #f1f1f1;
+}
+
+.contact-info strong {
+  color: #f39c12;
+}
+
+.contact-info i {
+  font-style: italic;
+}
+
+.contact-info a {
+  color: #f39c12;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column; /* Stack the offices vertically on smaller screens */
+    padding: 20px;
+  }
+
+  .contact-info {
+    width: 100%; /* Each office will take full width on small screens */
+    margin-bottom: 20px;
+  }
+}

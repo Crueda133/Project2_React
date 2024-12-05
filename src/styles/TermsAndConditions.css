@@ -1,0 +1,82 @@
+/* Ensure the body and html cover full height */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #333333;
+}
+
+.terms-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
+  min-height: 100vh; /* Make the container fill the full viewport height */
+  padding: 30px;
+  background-color: #333333;
+  border-radius: 10px;
+  color: #f1f1f1;
+}
+
+.terms-container h2 {
+  font-size: 2.5em;
+  color: #f39c12; /* Yellow color for main title */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.terms-container p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+.terms-container h3 {
+  font-size: 2em;
+  color: #f39c12;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.terms-container h4 {
+  font-size: 1.6em;
+  color: #f39c12;
+  margin-bottom: 10px;
+}
+
+.terms-content {
+  background-color: #444444;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Make content section responsive */
+  max-width: 900px;
+}
+
+.terms-content p {
+  font-size: 1.1em;
+  color: #f1f1f1;
+  margin-top: 10px;
+}
+
+.terms-container a {
+  color: #f39c12; /* Yellow color for links */
+  text-decoration: none;
+}
+
+.terms-container a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .terms-container {
+    padding: 20px;
+  }
+
+  .terms-content {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
