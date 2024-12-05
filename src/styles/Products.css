@@ -1,9 +1,9 @@
 .products-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 20px;
-  justify-items: center; /* Center the items horizontally */
-  padding: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-items: center;
+  padding: 10px;
 }
 
 .product-card {
@@ -11,19 +11,45 @@
   border-radius: 8px;
   padding: 10px;
   width: 100%;
-  max-width: 300px; /* Maximum width to keep the cards uniform */
   text-align: center;
+  display: flex;
+  flex-direction: column; /* Ensures content flows vertically */
+  justify-content: space-between; /* Distributes space evenly */
 }
 
 .product-image {
   width: 100%;
-  height: auto;
+  max-height: 200px; /* Set the max height to the desired value */
+  object-fit: cover; /* Ensures the image fills the space without stretching */
   border-radius: 8px;
 }
 
-.product-info h3 {
+.product-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Ensures space between left and right columns */
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+}
+
+.product-info .details {
+  flex: 2; /* Takes 2 parts of the available space */
+  padding-right: 10px; /* Adds some spacing between the columns */
+}
+
+.product-info .right-column {
+  flex: 1; /* Takes 1 part of the available space */
+  text-align: right;
+  padding-left: 10px; /* Adds some spacing between the columns */
+}
+
+.price {
+  color: black;
   font-size: 18px;
   margin-top: 10px;
+  font-weight: bold;
+  font-style: italic;
 }
 
 .product-info p {
@@ -42,7 +68,7 @@
   text-decoration: underline;
 }
 
-/* Message if they do not find a product with the filters  */
+/* Message if they do not find a product with the filters */
 .sorry-message {
   text-align: center;
   font-weight: bold;

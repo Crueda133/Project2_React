@@ -55,96 +55,100 @@ function SearchForm({
 
   return (
     <form className="search-form" onSubmit={(e) => e.preventDefault()}>
-      {/* Destinos */}
-      <div className="form-group">
-        <label htmlFor="country">Destination</label>
-        <input
-          type="text"
-          id="country"
-          name="country"
-          value={filters.country}
-          onChange={handleChange}
-          placeholder="Enter destination"
-          onFocus={() => setShowDestinations(true)}
-          onBlur={() => setTimeout(() => setShowDestinations(false), 200)}
-        />
-        {showDestinations && (
-          <SearchFormLists
-            data={destinations}
-            onItemClick={(item) => handleItemClick(item, "country")}
-            title="Popular Destinations"
-            listType="destination"
+      <div className="search-form-wrapper">
+        {/* Destinos */}
+        <div className="form-group">
+          <label htmlFor="country">Destination</label>
+          <input
+            type="text"
+            id="country"
+            name="country"
+            value={filters.country}
+            onChange={handleChange}
+            placeholder="Enter destination"
+            onFocus={() => setShowDestinations(true)}
+            onBlur={() => setTimeout(() => setShowDestinations(false), 200)}
           />
-        )}
-      </div>
+          {showDestinations && (
+            <SearchFormLists
+              data={destinations}
+              onItemClick={(item) => handleItemClick(item, "country")}
+              title="Popular Destinations"
+              listType="destination"
+            />
+          )}
+        </div>
 
-      {/* Departamento */}
-      <div className="form-group">
-        <label htmlFor="department">Department / Region</label>
-        <input
-          type="text"
-          id="department"
-          name="department"
-          value={filters.department}
-          onChange={handleChange}
-          placeholder="Enter department"
-          onFocus={() => setShowDepartments(true)}
-          onBlur={() => setTimeout(() => setShowDepartments(false), 200)}
-        />
-        {showDepartments && (
-          <SearchFormLists
-            data={departments}
-            onItemClick={(item) => handleItemClick(item, "department")}
-            title="Available Departments"
-            listType="department"
+        {/* Departamento */}
+        <div className="form-group">
+          <label htmlFor="department">Department / Region</label>
+          <input
+            type="text"
+            id="department"
+            name="department"
+            value={filters.department}
+            onChange={handleChange}
+            placeholder="Enter department"
+            onFocus={() => setShowDepartments(true)}
+            onBlur={() => setTimeout(() => setShowDepartments(false), 200)}
           />
-        )}
-      </div>
+          {showDepartments && (
+            <SearchFormLists
+              data={departments}
+              onItemClick={(item) => handleItemClick(item, "department")}
+              title="Available Departments"
+              listType="department"
+            />
+          )}
+        </div>
 
-      {/* Servicios */}
-      <div className="form-group">
-        <label htmlFor="services">Services</label>
-        <input
-          type="text"
-          id="services"
-          name="services"
-          value={filters.services}
-          onChange={handleChange}
-          placeholder="Enter services"
-          onFocus={() => setShowServices(true)}
-          onBlur={() => setTimeout(() => setShowServices(false), 200)}
-        />
-        {showServices && (
-          <SearchFormLists
-            data={services}
-            onItemClick={(item) => handleItemClick(item, "services")}
-            title="Available Services"
-            listType="service"
+        {/* Servicios */}
+        <div className="form-group">
+          <label htmlFor="services">Services</label>
+          <input
+            type="text"
+            id="services"
+            name="services"
+            value={filters.services}
+            onChange={handleChange}
+            placeholder="Enter services"
+            onFocus={() => setShowServices(true)}
+            onBlur={() => setTimeout(() => setShowServices(false), 200)}
           />
-        )}
-      </div>
+          {showServices && (
+            <SearchFormLists
+              data={services}
+              onItemClick={(item) => handleItemClick(item, "services")}
+              title="Available Services"
+              listType="service"
+            />
+          )}
+        </div>
 
-      {/* Rango de precios */}
-      <div className="form-group">
-        <label>Price</label>
-        <select
-          name="price"
-          value={filters.price}
-          onChange={handleChange}
-          className="price-filter"
-        >
-          <option value="">Any</option>
-          <option value="under_100">Under 100</option>
-          <option value="100_to_150">100 to 150</option>
-          <option value="150_to_200">150 to 200</option>
-          <option value="over_200">Over 200</option>
-        </select>
-      </div>
+        {/* Rango de precios */}
+        <div className="form-group">
+          <label>Price</label>
+          <select
+            name="price"
+            value={filters.price}
+            onChange={handleChange}
+            className="price-filter"
+          >
+            <option value="">Any</option>
+            <option value="under_100">Under 100</option>
+            <option value="100_to_150">100 to 150</option>
+            <option value="150_to_200">150 to 200</option>
+            <option value="over_200">Over 200</option>
+          </select>
+        </div>
 
-      {/* Reset Button */}
-      <button type="button" onClick={handleReset} className="reset-btn">
-        Reset Filters
-      </button>
+        {/* Reset Button */}
+        <div className="reset-btn-wrapper">
+          <button type="button" onClick={handleReset} className="reset-btn">
+            Reset Filters
+          </button>
+        </div>
+      </div>
     </form>
   );
 }

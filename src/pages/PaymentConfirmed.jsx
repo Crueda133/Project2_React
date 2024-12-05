@@ -3,22 +3,31 @@ import { useParams } from "react-router-dom";
 import "../styles/PaymentConfirmed.css";
 
 function PaymentConfirmed({ products }) {
-  const { id } = useParams(); // Get product ID from the URL
-  console.log("Payment Confirmed - Product ID:", id); // Debugging the ID
+  const { id } = useParams();
+  console.log("Payment Confirmed - Product ID:", id);
 
-  // Ensure the ID comparison is done correctly (either both as strings or both as numbers)
-  const product = products.find((prod) => prod.id.toString() === id); // Compare directly as string or use parseInt if needed
+  const product = products.find((prod) => prod.id.toString() === id);
 
   if (!product) {
-    return <div className="sorry-message">Product not found.</div>; // Show message if product not found
+    return <div className="sorry-message">Product not found.</div>;
   }
+
+  const handleSubscription = (e) => {
+    e.preventDefault();
+    const email = e.target.elements.email.value;
+    if (email) {
+      console.log("Email submitted:", email);
+      alert("Thank you for subscribing!");
+      // You can add logic to send this email to your backend here.
+    }
+  };
 
   return (
     <div className="payment-confirmed-container">
       <h1>Congratulations!</h1>
       <p>
         You have reserved <strong>{product.title}</strong> for{" "}
-        <strong>{product.price}€</strong>.
+        <strong>{product.price}</strong>.
       </p>
 
       <div className="product-details">
@@ -28,21 +37,32 @@ function PaymentConfirmed({ products }) {
             Location: {product.city_name}, {product.country}
           </li>
           <li>Description: {product.description}</li>
-          <li>Price: {product.price}€</li>
+          <li>Activities: {product.activities.join(", ")}</li>
         </ul>
       </div>
+      <div className="buttons-row">
+        <a href="/" className="button">
+          Back to Home
+        </a>
+        <a href="/bookings" className="button">
+          Manage Booking
+        </a>
+        <form className="email-container" onSubmit={handleSubscription}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Type email to receive your information & offers"
+            required
+          />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
 
-      {/* Optional: Add product image */}
       <img
         src={product.product_galery_1_grand}
         alt={product.title}
         className="product-image"
       />
-
-      {/* Optional: Add a "Back to Home" button */}
-      <a href="/" className="button">
-        Back to Home
-      </a>
     </div>
   );
 }

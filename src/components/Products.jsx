@@ -13,15 +13,19 @@ function Products({ products, isAdmin }) {
             className="product-image"
           />
           <div className="product-info">
-            <h3>{product.title}</h3>
-            <p>{product.city_name}</p>
-            <p>{product.price}</p>
-            <p>{product.catch_line}</p>
-            <Link to={`/product/${product.id}`} className="view-offer-link">
-              See the offer
-            </Link>
-            {isAdmin ? <button>Edit</button> : null}
-            {isAdmin ? <button>Delete</button> : null}
+            <div className="details">
+              <h3>{product.title}</h3>
+              <p>{product.city_name}</p>
+              <p>{product.catch_line}</p>
+            </div>
+            <div className="right-column">
+              <p className="price">{product.price}</p>
+              <Link to={`/product/${product.id}`} className="view-offer-link">
+                See the offer ➡️
+              </Link>
+              {isAdmin && <button>Edit</button>}
+              {isAdmin && <button>Delete</button>}
+            </div>
           </div>
         </div>
       ))}

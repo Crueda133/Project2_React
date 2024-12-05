@@ -2,10 +2,11 @@
 .search-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-  margin: 20px auto;
-  padding: 20px;
+  gap: 10px;
+  justify-content: flex-start; /* Align items to the start of the row */
+  margin: 10px auto;
+  margin-top: 0%;
+  padding: 10px;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -32,6 +33,7 @@
   border-radius: 4px;
 }
 
+/* Button styles */
 .submit-btn {
   padding: 10px;
   background-color: #007bff;
@@ -47,8 +49,39 @@
   background-color: #0056b3;
 }
 
+.reset-btn {
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  color: #555;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.reset-btn:hover {
+  background-color: #ddd;
+}
+
+/* Wrapper for reset button and form elements to align them in the same row */
+.search-form-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 20px; /* Add space between the filters and reset button */
+}
+
+.reset-btn-wrapper {
+  display: flex;
+  flex: 1; /* Make sure the reset button is aligned with the filters */
+  justify-content: flex-end; /* Align the reset button to the right */
+}
+
 /* Optional: Add a responsive design for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .search-form {
     flex-direction: column;
     align-items: center;
@@ -60,5 +93,31 @@
 
   .submit-btn {
     width: auto;
+  }
+
+  /* When screen width is small, stack the reset button and filters */
+  .reset-btn-wrapper {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .reset-btn {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-form-wrapper {
+    flex-direction: column;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .submit-btn,
+  .reset-btn {
+    width: 100%;
   }
 }
