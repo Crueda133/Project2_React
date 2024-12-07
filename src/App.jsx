@@ -209,7 +209,13 @@ function App() {
             {/* Product Detail Route */}
             <Route
               path="/product/:id"
-              element={<ProductDetail products={products} />} // Pass original products array
+              element={
+                <ProductDetail
+                  products={products}
+                  setBookings={setBookings}
+                  bookings={bookings}
+                />
+              } // Pass original products array
             />
 
             {/* Payment Page Route */}

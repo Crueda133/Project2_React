@@ -28,7 +28,7 @@ function PaymentPage({ products, setBookings }) {
       console.log("Booking added:", product); // Debug log
 
       // Navigate to PaymentConfirmed
-      navigate(`/payment-confirmed/${id}`);
+      // navigate(`/payment-confirmed/${id}`, { state: { product } });
     } else {
       console.error("Product not found for ID:", id);
     }

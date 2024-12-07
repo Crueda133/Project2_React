@@ -10,7 +10,7 @@ function Bookings({ bookings }) {
     if (!booking) {
       return <div>Booking not found.</div>;
     }
-
+    console.log(booking);
     return (
       <div className="booking-details">
         <h1>{booking.title}</h1>
@@ -19,7 +19,7 @@ function Bookings({ bookings }) {
         </p>
         <p>Price: {booking.price}€</p>
         <p>Description: {booking.description}</p>
-        <p>Activities: {booking.activities.join(", ")}</p>
+        <p>Activities: {booking.activities?.join(", ")}</p>
       </div>
     );
   }

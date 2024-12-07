@@ -16,7 +16,7 @@ function PaymentConfirmed({ products, setBookings, bookings }) {
   }
 
   const handleManageBooking = () => {
-    navigate(`/bookings/${products.id}`);
+    navigate(`/bookings/${product.id}`);
   };
 
   const handleSubscription = (e) => {
