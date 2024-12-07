@@ -14,6 +14,11 @@ function Bookings({ bookings }) {
     return (
       <div className="booking-details">
         <h1>{booking.title}</h1>
+        <img
+          src={booking.image}
+          alt={booking.title}
+          className="booking-details-image"
+        />
         <p>
           Location: {booking.city_name}, {booking.country}
         </p>
@@ -29,12 +34,17 @@ function Bookings({ bookings }) {
   }
 
   return (
-    <div className="bookings-container">
-      <h1>Your Bookings</h1>
-      <ul>
+    <div className="bookings-title-container">
+      <h1 className="bookings-title">Your Bookings</h1>
+      <ul className="bookings-container">
         {bookings.map((booking, index) => (
-          <li key={index}>
+          <li key={index} className="bookings-card">
             <h2>{booking.title}</h2>
+            <img
+              src={booking.image}
+              alt={booking.title}
+              className="booking-image"
+            />
             <p>
               Location: {booking.city_name}, {booking.country}
             </p>
