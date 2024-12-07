@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import SearchForm from "./components/SearchForm";
 import Products from "./components/Products";
 import Carousel from "./components/Carousel";
+import SearchFormAdmin from "./components/SearchFormAdmin";
+
 import ProductDetail from "./pages/ProductDetail";
 import PaymentPage from "./pages/PaymentPage";
 import PaymentConfirmed from "./pages/PaymentConfirmed";
@@ -163,6 +165,16 @@ function App() {
                 <>
                   {/* Carousel shown only on the main page */}
                   <Carousel />
+
+                  {/* Show Admin Form if Admin */}
+                  {isAdmin && (
+                    <SearchFormAdmin
+                      products={products}
+                      setProducts={setProducts}
+                      setFilteredProducts={setFilteredProducts}
+                    />
+                  )}
+
                   {/* Search Form for filtering products */}
                   <SearchForm
                     onFilter={handleFilter} // Pass the filter handler to SearchForm
@@ -192,6 +204,7 @@ function App() {
               }
             />
 
+            {/* NAVBAR */}
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route
@@ -202,6 +215,8 @@ function App() {
               path="/bookings/"
               element={<Bookings bookings={bookings} />}
             />
+
+            {/* FOOTER */}
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/job-offers" element={<JobOffers />} />

@@ -1,0 +1,111 @@
+/* Style the admin form */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+/* Style the header for the search form */
+.admin-form h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+  font-style: bold;
+}
+
+/* Styling for rows */
+.admin-form .row {
+  display: flex; /* Use flexbox for each row */
+  gap: 15px; /* Space between the fields */
+  width: 100%;
+  flex-wrap: wrap; /* Allow the items to wrap to the next line if necessary */
+}
+
+/* Style for each form field inside a row */
+.admin-form .form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 30%; /* Each field should take up 30% of the row's width */
+  min-width: 200px; /* Ensure that fields are not too small */
+}
+
+/* Label styling */
+.admin-form .form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Input, select, and textarea styling */
+.admin-form .form-group input,
+.admin-form .form-group select,
+.admin-form .form-group textarea {
+  width: 100%; /* Full width of the container */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Add Product button styling */
+.admin-form .submit-btn {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+  width: 100%; /* Full-width button */
+  align-self: center; /* Center the button */
+}
+
+.admin-form .submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .admin-form {
+    padding: 15px;
+  }
+
+  .admin-form .form-group {
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  .admin-form .submit-btn {
+    width: 100%; /* Full-width button */
+  }
+
+  /* Stack the rows on smaller screens */
+  .admin-form .row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-form .form-group {
+    width: 100%; /* Full width for fields on smaller screens */
+  }
+
+  .admin-form .submit-btn {
+    width: 100%; /* Full width for the button */
+  }
+
+  /* Stack the rows even more compact on very small screens */
+  .admin-form .row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

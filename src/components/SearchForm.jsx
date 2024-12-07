@@ -55,6 +55,7 @@ function SearchForm({
 
   return (
     <form className="search-form" onSubmit={(e) => e.preventDefault()}>
+      <h2>Search Product</h2>
       <div className="search-form-wrapper">
         {/* Destinos */}
         <div className="form-group">
