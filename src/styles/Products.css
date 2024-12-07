@@ -91,3 +91,12 @@
   margin-right: 8px;
   color: #28a745; /* Green color for the emoji */
 }
+
+.edit-button,
+.delete-button {
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-right: 5px;
+  background-color: #b44a3a;
+  color: whitesmoke;
+}

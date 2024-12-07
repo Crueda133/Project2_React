@@ -1,17 +1,16 @@
 // Navbar.jsx
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/HHgoodlogo.png";
 
 function Navbar({ onAdminToggle, isAdmin, setIsAdmin }) {
   return (
     <div className="custom-navbar">
       {/* Navbar */}
-      <nav
-      // className="navbar navbar-expand-lg navbar-dark bg-dark"
-      // style={{ background: "rgba(0, 0, 0, 0.6)" }}
-      >
+      <nav>
         <div className="container">
           <Link className="navbar-brand" to="/">
+            <img src={logo} alt="Logo" className="navbar-logo" />
             HomeHeaven
           </Link>
           {/* <button

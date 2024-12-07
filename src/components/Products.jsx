@@ -1,8 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useState } from "react-router-dom";
 import "../styles/Products.css";
 
-function Products({ products, isAdmin }) {
+function Products({ products, isAdmin, onDelete, onEdit }) {
+  // const [favorites, setFavorites] = useState([]);
+
+  // const toggleFavorite = (id) => {
+  //   setFavorites((prevFavorites) =>
+  //     prevFavorites.includes(id)
+  //       ? prevFavorites.filter((fav) => fav !== id)
+  //       : [...prevFavorites, id]
+  //   );
+  // };
+
   return (
     <div className="products-container">
       {products.map((product) => (
@@ -23,8 +33,22 @@ function Products({ products, isAdmin }) {
               <Link to={`/product/${product.id}`} className="view-offer-link">
                 See the offer ➡️
               </Link>
-              {isAdmin && <button>Edit</button>}
-              {isAdmin && <button>Delete</button>}
+              {isAdmin && (
+                <button
+                  className="edit-button"
+                  onClick={() => onEdit(product.id)}
+                >
+                  Edit
+                </button>
+              )}
+              {isAdmin && (
+                <button
+                  className="delete-button"
+                  onClick={() => onDelete(product.id)}
+                >
+                  Delete
+                </button>
+              )}
             </div>
           </div>
         </div>

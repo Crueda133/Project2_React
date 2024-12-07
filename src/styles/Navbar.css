@@ -59,34 +59,88 @@ nav .container {
 } */
 
 .custom-navbar {
-  width: 100%; /* Ensure the navbar takes full width of the screen */
+  width: 100%;
+}
+
+.navbar {
+  background-color: rgb(205, 210, 219);
 }
 
 nav .container {
   display: flex;
-  justify-content: space-between; /* Space between brand and navbar items */
-  align-items: center; /* Center the items vertically */
+  justify-content: space-between;
+  align-items: center;
 }
 
 #navbarNav .navbar-nav {
-  display: flex; /* Use flexbox to arrange the list items */
-  justify-content: space-evenly; /* Distribute the items evenly across the width */
+  display: flex;
+  justify-content: space-evenly;
   flex-direction: row;
-  width: 100%; /* Ensure the list items take up the full width */
+  width: 100%;
   padding: 0;
   margin: 0;
 }
 
 .nav-item {
   list-style: none;
+  margin-right: 5px;
+  /* background-color: rgb(17, 96, 165); */
+  padding: 5px;
+  font-style: italic;
+  color: aliceblue;
+}
+
+li.nav-item {
+  color: aliceblue;
+}
+
+.nav-link:hover {
+  color: yellow;
 }
 
 .nav-link {
   text-decoration: none;
   padding: 10px 15px;
-  display: block; /* Ensures the links are block level and fill the space */
+  display: block;
 }
 
-.nav-link:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Add a subtle hover effect */
+.navbar-logo {
+  width: 30px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.navbar-nav .nav-item .nav-link {
+  text-decoration: none;
+  color: rgb(71, 76, 85);
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #0056b3;
+}
+
+.admin-button {
+  text-decoration: none;
+  color: grey;
+  transition: color 0.3s ease;
+}
+
+/* Active Button State */
+.admin-button.active {
+  color: white;
+}
+
+/* Button hover effect */
+.admin-button:hover {
+  color: white;
 }

@@ -4,20 +4,18 @@
   margin: auto;
 }
 
-/* Style for the carousel inner container */
 .carousel-inner {
   display: flex;
   align-items: center;
-  height: 400px; /* Set the height as needed */
+  height: 400px;
   width: 100vw;
   overflow: hidden;
   position: relative;
 }
 
-/* Style for the image to ensure it's centered */
 .carousel-inner img {
-  max-width: 100%; /* Image can't exceed container width */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: contain; /* Ensure the image fits well */
-  margin: auto; /* Center the image */
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: auto;
 }

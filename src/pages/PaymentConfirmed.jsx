@@ -1,16 +1,23 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "../styles/PaymentConfirmed.css";
 
-function PaymentConfirmed({ products }) {
+function PaymentConfirmed({ products, setBookings, bookings }) {
+  console.log("Bookings passed to PaymentConfirmed:", bookings);
   const { id } = useParams();
+  const navigate = useNavigate();
   console.log("Payment Confirmed - Product ID:", id);
+  console.log(setBookings);
 
-  const product = products.find((prod) => prod.id.toString() === id);
+  const product = products.find((prod) => prod.id === id);
 
   if (!product) {
     return <div className="sorry-message">Product not found.</div>;
   }
+
+  const handleManageBooking = () => {
+    navigate(`/bookings/${products.id}`);
+  };
 
   const handleSubscription = (e) => {
     e.preventDefault();
@@ -44,9 +51,9 @@ function PaymentConfirmed({ products }) {
         <a href="/" className="button">
           Back to Home
         </a>
-        <a href="/bookings" className="button">
+        <button className="button" onClick={handleManageBooking}>
           Manage Booking
-        </a>
+        </button>
         <form className="email-container" onSubmit={handleSubscription}>
           <input
             type="email"

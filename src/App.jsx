@@ -25,6 +25,7 @@ function App() {
   const [destinations, setDestinations] = useState([]); // Stores unique destinations
   const [services, setServices] = useState([]); // Stores unique services
   const [isAdmin, setIsAdmin] = useState(false);
+  const [bookings, setBookings] = useState([]);
 
   // Fetch data from the API
   const fetchData = async () => {
@@ -124,9 +125,29 @@ function App() {
     setFilteredProducts(filtered);
   };
 
+  const handleEdit = (id) => {
+    alert(`Editing product with ID: ${id}`);
+    // Logic for editing a product (e.g., navigate to edit page or open modal)
+  };
+
+  const handleDelete = (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this product?"
+    );
+    if (confirmDelete) {
+      setProducts(products.filter((product) => product.id !== id));
+      alert(`Deleted product with ID: ${id}`);
+    }
+  };
+
   return (
     <Router>
-      <div className="app-container">
+      <div
+        className="app-container"
+        style={{
+          backgroundColor: isAdmin ? "#2F4F4F" : "#F5F5F5",
+        }}
+      >
         {/* Navbar Component */}
         <div className="navbar">
           <Navbar isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
@@ -151,7 +172,12 @@ function App() {
                   />
                   {/* Display filtered products or a message if none are found */}
                   {filteredProducts.length > 0 ? (
-                    <Products products={filteredProducts} isAdmin={isAdmin} />
+                    <Products
+                      products={filteredProducts}
+                      isAdmin={isAdmin}
+                      onEdit={handleEdit}
+                      onDelete={handleDelete}
+                    />
                   ) : (
                     <div className="sorry-message">
                       <i className="fas fa-sad-tear"></i>{" "}
@@ -168,7 +194,14 @@ function App() {
 
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="/bookings" element={<Bookings />} />
+            <Route
+              path="/bookings/:id"
+              element={<Bookings bookings={bookings} />}
+            />
+            <Route
+              path="/bookings/"
+              element={<Bookings bookings={bookings} />}
+            />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/job-offers" element={<JobOffers />} />
@@ -182,13 +215,25 @@ function App() {
             {/* Payment Page Route */}
             <Route
               path="/payment/:id"
-              element={<PaymentPage products={products} />}
+              element={
+                <PaymentPage
+                  products={products}
+                  setBookings={setBookings}
+                  bookings={bookings}
+                />
+              }
             />
 
             {/* Payment Confirmation Route */}
             <Route
               path="/payment-confirmed/:id"
-              element={<PaymentConfirmed products={products} />}
+              element={
+                <PaymentConfirmed
+                  bookings={bookings}
+                  setBookings={setBookings}
+                  products={products}
+                />
+              }
             />
 
             {/* Catch-All Route */}
