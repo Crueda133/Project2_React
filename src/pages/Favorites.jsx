@@ -1,11 +1,19 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function Favourites() {
   const [favorites, setFavorites] = useState([]);
+  const API_URL = "http://localhost:3001";
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
+    // const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    axios
+      .get(`${API_URL}/favorites`)
+      .then((data) => {
+        setFavorites(data.data);
+        console.log(`favorites added:`, data.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
