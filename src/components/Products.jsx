@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 import "../styles/Products.css";
+import axios from "axios";
 
 function Products({ products, isAdmin, onDelete, onEdit }) {
   const [editingProduct, setEditingProduct] = useState(null);
   const [favorites, setFavorites] = useState([]);
+  const API_URL = "http://localhost:3001";
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -13,17 +15,33 @@ function Products({ products, isAdmin, onDelete, onEdit }) {
 
   // Update localStorage whenever favorites change
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+    // localStorage.setItem("favorites", JSON.stringify(favorites));
+    axios
+      .get(`${API_URL}/favorites`)
+      .then((data) => {
+        setFavorites(data.data);
+        console.log(`favorites added:`, data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const toggleFavorite = (product) => {
-    setFavorites((prevFavorites) => {
-      if (prevFavorites.includes(product)) {
-        return prevFavorites.filter((fav) => fav !== product);
-      } else {
-        return [...prevFavorites, product];
+    const filtered = favorites.filter((oneProduct) => {
+      if (oneProduct.id === product.id) {
+        return true;
       }
     });
+    if (filtered.length === 0) {
+      axios
+        .post(`${API_URL}/favorites`, product)
+        .then((data) => {
+          console.log(`favorites added:`, data.data);
+          setFavorites((prev) => {
+            return [...prev, data.data];
+          });
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const isFavorite = (productId) => favorites.includes(productId);
