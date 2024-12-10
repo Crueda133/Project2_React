@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 function Favourites() {
   const [favorites, setFavorites] = useState([]);
-  const API_URL = "http://localhost:3001";
+  const API_URL = process.env.REACT_API_URL || "http://localhost:3001";
 
   useEffect(() => {
     // const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];

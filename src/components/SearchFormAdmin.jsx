@@ -4,7 +4,7 @@ import "./../styles/SearchFormAdmin.css";
 
 const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
   const API_URL =
-    process.env.REACT_API_URL || "http://localhost:3001/properties"; // Change this to your actual API URL
+    process.env.REACT_APP_API_URL || "http://localhost:3001/properties";
 
   // New product state
   const [newProduct, setNewProduct] = useState({
@@ -29,14 +29,15 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
     setNewProduct({ ...newProduct, [name]: value });
   };
 
-  // Handle adding product - prevent default
+  // Handle adding a product
   const handleAddProduct = async (e) => {
     e.preventDefault();
 
     try {
-      // Change axios - joshua said it is good :)
-      const response = await axios.post(`${API_URL}/newProduct`);
+      // Send POST request to the correct endpoint with new product data
+      const response = await axios.post(API_URL);
 
+      // Update state with the new product
       setProducts([response.data, ...products]);
       setFilteredProducts([response.data, ...products]);
       alert("Product added successfully!");
@@ -59,7 +60,7 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
       });
     } catch (error) {
       console.error("Error adding product:", error);
-      alert("Error adding product");
+      alert("Error adding product. Please check the console for details.");
     }
   };
 
