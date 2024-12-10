@@ -3,7 +3,8 @@ import axios from "axios";
 import "./../styles/SearchFormAdmin.css";
 
 const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
-  const API_URL = "http://localhost:3001/properties"; // Change this to your actual API URL
+  const API_URL =
+    process.env.REACT_API_URL || "http://localhost:3001/properties"; // Change this to your actual API URL
 
   // New product state
   const [newProduct, setNewProduct] = useState({
@@ -33,7 +34,7 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
     e.preventDefault();
 
     try {
-      // Change axios - verificar con joshua si esta bien !
+      // Change axios - joshua said it is good :)
       const response = await axios.post(`${API_URL}/newProduct`);
 
       setProducts([response.data, ...products]);
