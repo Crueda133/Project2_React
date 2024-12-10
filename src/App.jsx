@@ -19,6 +19,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import ContactUs from "./pages/ContactUs";
 import JobOffers from "./pages/JobOffers";
 import EditProduct from "./pages/EditProduct";
+import axios from "axios";
 
 function App() {
   const [products, setProducts] = useState([]); // Stores all products
@@ -28,12 +29,14 @@ function App() {
   const [services, setServices] = useState([]); // Stores unique services
   const [isAdmin, setIsAdmin] = useState(false);
   const [bookings, setBookings] = useState([]);
+  const API_URL = process.env.REACT_API_URL || "http://localhost:3001"; // Change this to your actual API URL
 
   // Fetch data from the API
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3001/properties");
-      const data = await response.json();
+      const response = await axios.get(`${API_URL}/properties`);
+      const data = response.data;
+
       console.log("API Data Fetched:", data); // Log fetched data for debugging
 
       if (Array.isArray(data) && data.length > 0) {
