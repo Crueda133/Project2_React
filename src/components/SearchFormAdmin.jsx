@@ -35,7 +35,7 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
 
     try {
       // Change axios - joshua said it is good :)
-      const response = await axios.post(`${API_URL}/newProduct`);
+      const response = await axios.post(`${API_URL}`);
 
       setProducts([response.data, ...products]);
       setFilteredProducts([response.data, ...products]);
