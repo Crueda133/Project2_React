@@ -1,0 +1,14 @@
+.aboutus-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: #333333;
+  border-radius: 10px;
+  color: #f1f1f1;
+}
+
+.aboutus-title {
+  color: #f39c12;
+}

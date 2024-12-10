@@ -9,7 +9,6 @@ import SearchForm from "./components/SearchForm";
 import Products from "./components/Products";
 import Carousel from "./components/Carousel";
 import SearchFormAdmin from "./components/SearchFormAdmin";
-
 import ProductDetail from "./pages/ProductDetail";
 import PaymentPage from "./pages/PaymentPage";
 import PaymentConfirmed from "./pages/PaymentConfirmed";
@@ -19,6 +18,7 @@ import Bookings from "./pages/Bookings";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ContactUs from "./pages/ContactUs";
 import JobOffers from "./pages/JobOffers";
+import EditProduct from "./pages/EditProduct";
 
 function App() {
   const [products, setProducts] = useState([]); // Stores all products
@@ -127,19 +127,18 @@ function App() {
     setFilteredProducts(filtered);
   };
 
-  const handleEdit = (id) => {
-    alert(`Editing product with ID: ${id}`);
-    // Logic for editing a product (e.g., navigate to edit page or open modal)
+  const handleDelete = (id) => {
+    setProducts((prev) => prev.filter((product) => product.id !== id));
   };
 
-  const handleDelete = (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this product?"
+  const handleEdit = (updatedProduct) => {
+    setProducts((prev) =>
+      prev.map((product) =>
+        product.id === updatedProduct.id
+          ? { ...product, ...updatedProduct }
+          : product
+      )
     );
-    if (confirmDelete) {
-      setProducts(products.filter((product) => product.id !== id));
-      alert(`Deleted product with ID: ${id}`);
-    }
   };
 
   return (
@@ -203,6 +202,8 @@ function App() {
                 </>
               }
             />
+
+            <Route path="/edit/:id" element={<EditProduct />} />
 
             {/* NAVBAR */}
             <Route path="/about-us" element={<AboutUs />} />

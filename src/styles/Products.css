@@ -22,6 +22,7 @@
   max-height: 200px; /* Set the max height to the desired value */
   object-fit: cover; /* Ensures the image fills the space without stretching */
   border-radius: 8px;
+  display: block;
 }
 
 .product-info {
@@ -62,6 +63,7 @@
   margin-top: 10px;
   color: #007bff;
   text-decoration: none;
+  margin-right: 20px;
 }
 
 .view-offer-link:hover {
@@ -99,4 +101,17 @@
   margin-right: 5px;
   background-color: #b44a3a;
   color: whitesmoke;
+}
+
+.favorite-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: grey;
+  transition: color 0.3s ease;
+}
+
+.favorite-button.favorited {
+  color: red;
 }

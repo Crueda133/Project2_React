@@ -4,6 +4,7 @@
   gap: 10px;
   justify-items: center;
   padding: 10px;
+  background-color: #333333;
 }
 
 .booking-details {
@@ -46,6 +47,7 @@
 
 .bookings-title {
   text-align: center;
+  color: #f39c12;
 }
 
 .bookings-title-container {
