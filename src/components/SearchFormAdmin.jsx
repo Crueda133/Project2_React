@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./../styles/SearchFormAdmin.css";
-
 const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
   const API_URL =
     process.env.REACT_APP_API_URL || "http://localhost:3001/properties";
@@ -22,7 +21,6 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
     arrivaldate: "",
     housing_name: "",
   });
-
   // Handle changes in the form inputs
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,8 +30,9 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
   // Handle adding a product
   const handleAddProduct = async (e) => {
     e.preventDefault();
-
     try {
+      // Change axios - joshua said it is good :)
+      const response = await axios.post(`${API_URL}`);
       // Send POST request to the correct endpoint with new product data
       const response = await axios.post(API_URL);
 
@@ -41,7 +40,6 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
       setProducts([response.data, ...products]);
       setFilteredProducts([response.data, ...products]);
       alert("Product added successfully!");
-
       // Reset the form
       setNewProduct({
         id: "",
@@ -63,11 +61,9 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
       alert("Error adding product. Please check the console for details.");
     }
   };
-
   return (
     <form className="admin-form" onSubmit={handleAddProduct}>
       <h2>Add New Product</h2>
-
       {/* First row: ID, Title, City Name */}
       <div className="row">
         <div className="form-group">
@@ -101,7 +97,6 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
           />
         </div>
       </div>
-
       {/* Second row: Price, Department, Services */}
       <div className="row">
         <div className="form-group">
@@ -140,7 +135,6 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
           />
         </div>
       </div>
-
       {/* Third row: Image URL, Country, Arrival Date */}
       <div className="row">
         <div className="form-group">
@@ -172,7 +166,6 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
           />
         </div>
       </div>
-
       {/* Fourth row: Description, Activities */}
       <div className="row">
         <div className="form-group">
@@ -199,7 +192,6 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
           />
         </div>
       </div>
-
       {/* Submit Button */}
       <button type="submit" className="submit-btn">
         Add Product
@@ -207,5 +199,4 @@ const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
     </form>
   );
 };
-
 export default SearchFormAdmin;
