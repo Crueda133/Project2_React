@@ -3,10 +3,19 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/Products.css";
 
-function Products({ products, isAdmin }) {
+function Products({ isAdmin }) {
   const [editingProduct, setEditingProduct] = useState(null);
   const [favorites, setFavorites] = useState([]);
+  const [products, setProducts] = useState([]);
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
+  useEffect(() => {
+    // Fetch initial products from backend
+    axios
+      .get(`${API_URL}/properties`)
+      .then((response) => setProducts(response.data))
+      .catch((error) => console.error("Error fetching products", error));
+  }, [API_URL]);
 
   useEffect(() => {
     axios
@@ -46,8 +55,10 @@ function Products({ products, isAdmin }) {
       try {
         await axios.delete(`${API_URL}/properties/${productId}`);
         alert("Product deleted successfully!");
-        setFavorites((prev) =>
-          prev.filter((product) => product.id !== productId)
+
+        // Optimistically update the state (remove the product from UI)
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product.id !== productId)
         );
       } catch (error) {
         console.error("Failed to delete product", error);
@@ -77,6 +88,13 @@ function Products({ products, isAdmin }) {
         editingProduct
       );
       alert("Product updated successfully");
+
+      // Update the local state with the edited product changes
+      const updatedProducts = products.map((product) =>
+        product.id === editingProduct.id ? editingProduct : product
+      );
+      setProducts(updatedProducts);
+
       setEditingProduct(null);
     } catch (error) {
       console.error("Error saving changes", error);
