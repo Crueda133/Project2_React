@@ -1,38 +1,43 @@
 import React from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/ProductDetail.css";
 
-function ProductDetail({ products, setBookings, bookings }) {
+function ProductDetail({ products }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const product = products.find((product) => product.id === id);
-  const handlePayment = () => {
-    console.log("products:", products);
-    console.log("id from params:", id);
-    const product = products.find((p) => p.id === id);
-    console.log("Matched product:", product);
-    if (product) {
-      // Add product to bookings
-      setBookings((prevBookings) => [
-        ...prevBookings,
-        {
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          city_name: product.city_name,
-          country: product.country,
-          description: product.description,
-          image: product.product_galery_1_grand,
-        },
-      ]);
 
-      console.log("Booking added:", product); // Debug log
+  const handlePayment = async () => {
+    if (!product) {
+      console.error("Product not found.");
+      return;
+    }
 
-      // Navigate to PaymentConfirmed
-      navigate(`/payment-confirmed/${id}`);
-    } else {
-      console.error("Product not found for ID:", id);
+    try {
+      // POST to backend server's /bookings endpoint
+      const response = await axios.post("http://localhost:3001/bookings", {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        city_name: product.city_name,
+        country: product.country,
+        description: product.description,
+        image: product.product_galery_1_grand,
+      });
+
+      console.log("Response from backend server:", response.data);
+
+      if (response.status === 201) {
+        // Successfully added booking to the server
+        console.log("Booking added successfully.");
+        navigate(`/payment-confirmed/${id}`);
+      } else {
+        console.error("Unexpected response status:", response.status);
+      }
+    } catch (error) {
+      console.error("Failed to process payment:", error);
     }
   };
 
@@ -50,7 +55,7 @@ function ProductDetail({ products, setBookings, bookings }) {
         Location: {product.city_name}, {product.country}
       </p>
 
-      {/* Button to navigate to the Payment Confirmation page */}
+      {/* Button to initiate payment logic */}
       <button className="pay-now-btn" onClick={handlePayment}>
         Pay Now
       </button>

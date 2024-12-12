@@ -14,7 +14,7 @@ function Favourites() {
         console.log(`favorites added:`, data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [API_URL]);
 
   return (
     <div className="favorites-container">

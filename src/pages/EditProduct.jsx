@@ -6,9 +6,12 @@ function EditProduct() {
   const [product, setProduct] = useState({});
   const [error, setError] = useState(null);
 
+  const API_URL =
+    process.env.REACT_APP_API_URL || "http://localhost:3001/properties";
+
   useEffect(() => {
     // Fetch product data based on the ID
-    fetch(`/api/products/${id}`)
+    fetch(`${API_URL}/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch product data");
@@ -23,7 +26,7 @@ function EditProduct() {
         console.error("Error fetching product:", err);
         setError(err.message);
       });
-  }, [id]);
+  }, [id, API_URL]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +43,12 @@ function EditProduct() {
 
       const updatedProduct = await response.json();
       console.log("Updated product successfully:", updatedProduct);
+
+      // Re-fetch the updated product data
+      fetch(`/api/products/${id}`)
+        .then((res) => res.json())
+        .then((data) => setProduct(data));
+
       alert("Product updated successfully!");
     } catch (err) {
       console.error("Error saving changes:", err);
@@ -92,6 +101,7 @@ function EditProduct() {
             }
           />
         </label>
+        {/* Add more fields as needed */}
         <button type="submit">Save Changes</button>
       </form>
     </div>
