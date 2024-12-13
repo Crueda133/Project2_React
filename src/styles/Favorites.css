@@ -1,0 +1,32 @@
+.favorites-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center child elements horizontally */
+  position: relative; /* Ensures that absolutely positioned children are relative to this container */
+  min-height: 100vh;
+  padding: 30px;
+  background-color: #333333;
+  border-radius: 10px;
+  color: #f1f1f1;
+}
+
+.favorites-title {
+  position: absolute; /* Position relative to the container */
+  top: 10px; /* Adjust the distance from the top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Fix centering offset */
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #f39c12;
+}
+
+.favorite-product-card {
+  background-color: #444444;
+  padding: 20px;
+  margin: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  margin-top: 30px;
+}

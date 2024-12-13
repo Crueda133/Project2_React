@@ -20,6 +20,7 @@ import ContactUs from "./pages/ContactUs";
 import JobOffers from "./pages/JobOffers";
 import EditProduct from "./pages/EditProduct";
 import axios from "axios";
+import Account from "./pages/Account";
 
 function App() {
   const [products, setProducts] = useState([]); // Stores all products
@@ -219,6 +220,8 @@ function App() {
               path="/bookings/"
               element={<Bookings bookings={bookings} />}
             />
+
+            <Route path="/account" element={<Account />} />
 
             {/* FOOTER */}
             <Route path="/terms" element={<TermsAndConditions />} />
