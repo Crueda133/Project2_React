@@ -3,11 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../styles/PaymentConfirmed.css";
 
 function PaymentConfirmed({ products, setBookings, bookings }) {
-  console.log("Bookings passed to PaymentConfirmed:", bookings);
   const { id } = useParams();
   const navigate = useNavigate();
   console.log("Payment Confirmed - Product ID:", id);
-  console.log(setBookings);
 
   const product = products.find((prod) => prod.id === id);
 

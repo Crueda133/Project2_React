@@ -1,57 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { data, Link, useNavigate } from "react-router-dom";
-import "../styles/Products.css";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import "../styles/Products.css";
 
-function Products({ products, isAdmin, onDelete, onEdit }) {
+function Products({ isAdmin }) {
   const [editingProduct, setEditingProduct] = useState(null);
   const [favorites, setFavorites] = useState([]);
-  const API_URL = "http://localhost:3001";
+  const [products, setProducts] = useState([]);
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
-  }, []);
+    // Fetch initial products from backend
+    axios
+      .get(`${API_URL}/properties`)
+      .then((response) => setProducts(response.data))
+      .catch((error) => console.error("Error fetching products", error));
+  }, [API_URL]);
 
-  // Update localStorage whenever favorites change
   useEffect(() => {
-    // localStorage.setItem("favorites", JSON.stringify(favorites));
     axios
       .get(`${API_URL}/favorites`)
-      .then((data) => {
-        setFavorites(data.data);
-        console.log(`favorites added:`, data.data);
+      .then((response) => {
+        setFavorites(response.data);
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((error) => console.error("Error fetching favorites", error));
+  }, [API_URL]);
 
-  const toggleFavorite = (product) => {
-    const filtered = favorites.filter((oneProduct) => {
-      if (oneProduct.id === product.id) {
-        return true;
+  const toggleFavorite = async (product) => {
+    const isAlreadyFavorite = favorites.some((fav) => fav.id === product.id);
+
+    if (isAlreadyFavorite) {
+      try {
+        await axios.delete(`${API_URL}/favorites/${product.id}`);
+        setFavorites((prev) => prev.filter((fav) => fav.id !== product.id));
+      } catch (error) {
+        console.error("Error removing favorite", error);
       }
-    });
-    if (filtered.length === 0) {
-      axios
-        .post(`${API_URL}/favorites`, product)
-        .then((data) => {
-          console.log(`favorites added:`, data.data);
-          setFavorites((prev) => {
-            return [...prev, data.data];
-          });
-        })
-        .catch((err) => console.log(err));
+    } else {
+      // Add to favorites
+      try {
+        const response = await axios.post(`${API_URL}/favorites`, product);
+        setFavorites((prev) => [...prev, response.data]);
+      } catch (error) {
+        console.error("Error adding to favorites", error);
+      }
     }
   };
 
-  const isFavorite = (productId) => favorites.includes(productId);
-
-  const handleDeleteClick = (productId) => {
+  const handleDeleteClick = async (productId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this product?"
     );
     if (confirmDelete) {
-      onDelete(productId);
+      try {
+        await axios.delete(`${API_URL}/properties/${productId}`);
+        alert("Product deleted successfully!");
+
+        // Optimistically update the state (remove the product from UI)
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product.id !== productId)
+        );
+      } catch (error) {
+        console.error("Failed to delete product", error);
+      }
     }
   };
 
@@ -69,11 +80,24 @@ function Products({ products, isAdmin, onDelete, onEdit }) {
     });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (onEdit && editingProduct) {
-      onEdit(editingProduct);
+    try {
+      await axios.put(
+        `${API_URL}/properties/${editingProduct.id}`,
+        editingProduct
+      );
+      alert("Product updated successfully");
+
+      // Update the local state with the edited product changes
+      const updatedProducts = products.map((product) =>
+        product.id === editingProduct.id ? editingProduct : product
+      );
+      setProducts(updatedProducts);
+
       setEditingProduct(null);
+    } catch (error) {
+      console.error("Error saving changes", error);
     }
   };
 
@@ -140,15 +164,17 @@ function Products({ products, isAdmin, onDelete, onEdit }) {
                   <h3>{product.title}</h3>
                   <p>{product.city_name}</p>
                   <p>{product.catch_line}</p>
-                  <p className="price">{product.price}</p>
+                  <p className="price">${product.price}</p>
 
                   <button
                     className={`favorite-button ${
-                      favorites.includes(product) ? "favorited" : ""
+                      favorites.some((fav) => fav.id === product.id)
+                        ? "favorited"
+                        : ""
                     }`}
                     onClick={() => toggleFavorite(product)}
                   >
-                    {favorites.includes(product) ? "♥" : "♡"}
+                    {favorites.some((fav) => fav.id === product.id) ? "♥" : "♡"}
                   </button>
 
                   <Link

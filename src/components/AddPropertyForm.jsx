@@ -14,12 +14,13 @@ function AddPropertyForm({ onClose }) {
       [e.target.name]: e.target.value,
     });
   };
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Make a POST request to the API
-    fetch("http://localhost:3001/properties", {
+    fetch(`${API_URL}/properties`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

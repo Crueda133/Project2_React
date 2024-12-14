@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 
-function Bookings({ bookings }) {
+function Bookings() {
   const { id } = useParams();
+  const [bookings, setBookings] = useState([]);
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
+  // Fetch bookings from the backend server
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/bookings`);
+        setBookings(response.data);
+      } catch (error) {
+        console.error("Error fetching bookings:", error);
+      }
+    };
+
+    fetchBookings();
+  });
 
   if (id) {
     const booking = bookings.find((b) => b.id.toString() === id);
@@ -10,7 +27,9 @@ function Bookings({ bookings }) {
     if (!booking) {
       return <div>Booking not found.</div>;
     }
-    console.log(booking);
+
+    console.log("Booking from backend:", booking);
+
     return (
       <div className="booking-details">
         <h1>{booking.title}</h1>
@@ -37,8 +56,8 @@ function Bookings({ bookings }) {
     <div className="bookings-title-container">
       <h1 className="bookings-title">Your Bookings</h1>
       <ul className="bookings-container">
-        {bookings.map((booking, index) => (
-          <li key={index} className="bookings-card">
+        {bookings.map((booking) => (
+          <li key={booking.id} className="bookings-card">
             <h2>{booking.title}</h2>
             <img
               src={booking.image}

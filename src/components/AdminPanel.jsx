@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 
 function AdminPanel() {
   const [properties, setProperties] = useState([]);
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
   useEffect(() => {
     // Fetch properties from the API
-    fetch("http://localhost:3001/properties")
+    fetch(`${API_URL}/properties`)
       .then((response) => response.json())
       .then((data) => setProperties(data))
       .catch((error) => console.error("Error fetching properties:", error));
@@ -13,7 +14,7 @@ function AdminPanel() {
 
   const handleDelete = (id) => {
     // Delete a property
-    fetch(`http://localhost:3001/properties/${id}`, {
+    fetch(`${API_URL}/properties/${id}`, {
       method: "DELETE",
     })
       .then(() => {

@@ -1,0 +1,102 @@
+/* General container for the account form */
+.account-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #333333;
+  min-height: 100vh;
+}
+
+/* Form styling */
+.account-form {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.account-form h1 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.account-form label {
+  display: block;
+  font-size: 14px;
+  color: #555555;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+.account-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.account-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.account-form button:hover {
+  background-color: #45a049;
+}
+
+/* Summary card styling */
+.account-summary {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  text-align: left;
+  font-family: Arial, sans-serif;
+}
+
+.account-summary h1 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.account-summary p {
+  font-size: 14px;
+  color: #555555;
+  margin: 5px 0;
+}
+
+.account-summary p strong {
+  color: #333333;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+  .account-form,
+  .account-summary {
+    padding: 15px;
+    width: 90%;
+  }
+
+  .account-form button {
+    font-size: 14px;
+  }
+}
