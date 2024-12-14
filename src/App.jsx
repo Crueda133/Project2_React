@@ -29,7 +29,7 @@ function App() {
   const [services, setServices] = useState([]); // Stores unique services
   const [isAdmin, setIsAdmin] = useState(false);
   const [bookings, setBookings] = useState([]);
-  const API_URL = process.env.REACT_API_URL || "http://localhost:3001"; // Change this to your actual API URL
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001"; // Change this to your actual API URL
 
   // Fetch data from the API
   const fetchData = async () => {

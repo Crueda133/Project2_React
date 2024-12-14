@@ -3,7 +3,7 @@ import axios from "axios";
 import "./../styles/SearchFormAdmin.css";
 const SearchFormAdmin = ({ products, setProducts, setFilteredProducts }) => {
   const API_URL =
-    process.env.REACT_API_URL || "http://localhost:3001/properties"; // Change this to your actual API URL
+    process.env.REACT_APP_API_URL || "http://localhost:3001/properties"; // Change this to your actual API URL
   // New product state
   const [newProduct, setNewProduct] = useState({
     id: "",
