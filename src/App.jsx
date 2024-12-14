@@ -71,7 +71,7 @@ function App() {
   // Fetch data on initial render
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   useEffect(() => {
     console.log("Products State Updated:", products); // Log products after they are updated
