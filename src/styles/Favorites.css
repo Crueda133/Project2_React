@@ -1,9 +1,9 @@
 .favorites-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center child elements horizontally */
-  position: relative; /* Ensures that absolutely positioned children are relative to this container */
-  min-height: 100vh;
+  align-items: center;
+  position: relative;
+  min-height: 1000px;
   padding: 30px;
   background-color: #333333;
   border-radius: 10px;
@@ -11,10 +11,10 @@
 }
 
 .favorites-title {
-  position: absolute; /* Position relative to the container */
-  top: 10px; /* Adjust the distance from the top */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Fix centering offset */
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0;
   font-size: 24px;
   font-weight: bold;
@@ -22,7 +22,7 @@
 }
 
 .favorite-product-card {
-  background-color: #444444;
+  background-color: #7a7979;
   padding: 20px;
   margin: 30px;
   border-radius: 10px;

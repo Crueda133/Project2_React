@@ -19,6 +19,7 @@ function Favourites() {
   return (
     <div className="favorites-container">
       <h2 className="favorites-title">Your Favorites</h2>
+      <br />
       {favorites.length === 0 ? (
         <p>No favorite products yet!</p>
       ) : (

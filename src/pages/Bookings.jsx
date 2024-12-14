@@ -19,7 +19,7 @@ function Bookings() {
     };
 
     fetchBookings();
-  }, []);
+  });
 
   if (id) {
     const booking = bookings.find((b) => b.id.toString() === id);
